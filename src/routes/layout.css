@@ -1,0 +1,27 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@theme {
+	--font-serif: 'Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', Georgia, serif;
+	--font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+	--color-paper: #f4efe3;
+	--color-paper-dark: #e7ddc8;
+	--color-ink: #2b2620;
+	--color-ink-soft: #6b6355;
+
+	--color-const: #7a7263;
+	--color-var: #3f6b52;
+	--color-surplus: #a1442c;
+	--color-labour: #3d5a73;
+}
+
+html {
+	background-color: var(--color-paper);
+	color: var(--color-ink);
+}
+
+body {
+	min-height: 100%;
+	font-family: var(--font-serif);
+}

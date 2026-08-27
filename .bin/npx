@@ -1,0 +1,3 @@
+#!/bin/sh
+# См. .bin/npm — тот же обход отсутствующего npm/npx в PATH через corepack.
+exec corepack npx "$@"

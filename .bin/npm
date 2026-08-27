@@ -1,0 +1,5 @@
+#!/bin/sh
+# Заглушка для машин, где npm не подключён в PATH напрямую, но Node.js
+# поставляется с corepack (в нём есть npm/npx/pnpm/yarn). Используется
+# автоматически из Makefile, если настоящий npm не найден.
+exec corepack npm "$@"
