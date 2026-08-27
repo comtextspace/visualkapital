@@ -1,26 +1,17 @@
-name: Deploy to GitHub Pages
+name: Build site
 
 on:
-  push:
-    branches: [main]
-  workflow_dispatch:
+  - push
+  - workflow_dispatch
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Не даём параллельным запускам мешать друг другу — новый пуш отменяет
-# предыдущий незавершённый деплой.
-concurrency:
-  group: pages
-  cancel-in-progress: true
+  contents: write
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -38,26 +29,18 @@ jobs:
       - name: Test
         run: npm run test
 
-      - name: Build
-        # Сайт живёт на собственном домене (см. static/CNAME), поэтому base path
-        # не задаём — BASE_PATH нужен только при деплое на github.io/<repo>/.
+      - name: Build pages
         run: npm run build
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: build
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v5
+        with:
+          target_branch: gh-pages
+          build_dir: build
+          fqdn: visualkapital.comtext.space
+          # SvelteKit кладёт JS-чанки в _app/ — без отключения Jekyll GitHub Pages
+          # проигнорирует эту папку (правило "_" по умолчанию), и сайт не откроется.
+          jekyll: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
