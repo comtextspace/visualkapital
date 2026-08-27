@@ -3,9 +3,10 @@ import { defineConfig } from 'vitest/config';
 import adapter from '@sveltejs/adapter-static';
 import { sveltekit } from '@sveltejs/kit/vite';
 
-// На GitHub Pages сайт репозитория обычно живёт по пути /<repo>/, а не в корне
-// домена. BASE_PATH задаётся в GitHub Actions при сборке (например "/visualkapital"),
-// локально — пустая строка. Значение обязано начинаться с "/", если оно задано.
+// Сайт раздаётся с собственного домена visualkapital.comtext.space (см. static/CNAME),
+// поэтому base остаётся пустым — путь /<repo>/ нужен только при деплое на
+// github.io/<repo>/ без своего домена. BASE_PATH можно задать в окружении сборки,
+// если понадобится вернуться к такому варианту; значение обязано начинаться с "/".
 const base = (process.env.BASE_PATH || '') as '' | `/${string}`;
 
 export default defineConfig({
