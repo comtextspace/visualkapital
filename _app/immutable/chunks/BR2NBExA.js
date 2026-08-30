@@ -1,0 +1,1 @@
+function e(e,t=0){return e.toLocaleString(`ru-RU`,{minimumFractionDigits:0,maximumFractionDigits:t})}function t(t,n=0){return`${e(t,n)}%`}export{t as n,e as t};
