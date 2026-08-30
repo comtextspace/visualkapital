@@ -7,6 +7,8 @@
 		MIN_WORKING_DAY_HOURS
 	} from '../../../models/workingDay';
 	import { formatNumber, formatPercent } from '$lib/format';
+	import CompositionBar from '$lib/components/CompositionBar.svelte';
+	import Legend from '$lib/components/Legend.svelte';
 
 	let workingDayHours = $state<number>(12);
 	let necessaryLabourHours = $state<number>(6);
@@ -16,9 +18,15 @@
 	// Ширина всей полосы пропорциональна длине дня относительно максимума —
 	// поэтому удлинение дня (H) реально растягивает полосу, а изменение
 	// необходимого времени (n) только двигает границу сегментов внутри неё.
-	const dayWidthPct = $derived((result.workingDayHours / MAX_WORKING_DAY_HOURS) * 100);
-	const necessaryPct = $derived((result.necessaryLabourHours / result.workingDayHours) * 100);
-	const surplusPct = $derived((result.surplusLabourHours / result.workingDayHours) * 100);
+	const daySegments = $derived([
+		{ key: 'n', short: 'n', value: result.necessaryLabourHours, color: 'var(--color-var)' },
+		{
+			key: 'surplus',
+			short: 'H−n',
+			value: result.surplusLabourHours,
+			color: 'var(--color-surplus)'
+		}
+	]);
 
 	const necessaryMax = $derived(workingDayHours - MIN_SURPLUS_LABOUR_HOURS);
 </script>
@@ -65,51 +73,20 @@
 			<span class="font-mono text-3xl">{formatNumber(result.workingDayHours, 1)} ч</span>
 		</div>
 		<div class="rounded-lg border border-dashed border-ink/20 bg-paper-dark/20 p-3">
-			<div
-				class="flex h-16 overflow-hidden rounded-md shadow-sm transition-[width] duration-300 ease-out sm:h-20"
-				style={`width: ${dayWidthPct}%;`}
-				role="img"
-				aria-label={`Рабочий день ${formatNumber(result.workingDayHours, 1)} часов: необходимое время ${formatNumber(result.necessaryLabourHours, 1)} часов, прибавочное время ${formatNumber(result.surplusLabourHours, 1)} часов`}
-			>
-				<div
-					class="flex items-center justify-center overflow-hidden text-paper transition-[flex-basis] duration-300 ease-out"
-					style={`flex: 0 0 ${necessaryPct}%; background-color: var(--color-var);`}
-				>
-					{#if necessaryPct > 10}
-						<span class="px-1 text-center font-mono text-xs leading-tight sm:text-sm">
-							n<br />{formatNumber(result.necessaryLabourHours, 1)} ч
-						</span>
-					{/if}
-				</div>
-				<div
-					class="flex items-center justify-center overflow-hidden text-paper transition-[flex-basis] duration-300 ease-out"
-					style={`flex: 0 0 ${surplusPct}%; background-color: var(--color-surplus);`}
-				>
-					{#if surplusPct > 10}
-						<span class="px-1 text-center font-mono text-xs leading-tight sm:text-sm">
-							H−n<br />{formatNumber(result.surplusLabourHours, 1)} ч
-						</span>
-					{/if}
-				</div>
-			</div>
+			<CompositionBar
+				segments={daySegments}
+				scaleMax={MAX_WORKING_DAY_HOURS}
+				formatValue={(value) => `${formatNumber(value, 1)} ч`}
+				ariaLabel={`Рабочий день ${formatNumber(result.workingDayHours, 1)} часов: необходимое время ${formatNumber(result.necessaryLabourHours, 1)} часов, прибавочное время ${formatNumber(result.surplusLabourHours, 1)} часов`}
+			/>
 		</div>
 
-		<div class="mt-3 flex flex-wrap justify-between gap-2 text-sm">
-			<span class="flex items-center gap-2">
-				<span class="inline-block h-3 w-3 rounded-sm" style="background-color: var(--color-var);"
-				></span>
-				необходимое время <code class="font-semibold text-var">n</code>
-				(<code class="text-var">v</code> = {formatNumber(result.v)} ₽)
-			</span>
-			<span class="flex items-center gap-2">
-				<span
-					class="inline-block h-3 w-3 rounded-sm"
-					style="background-color: var(--color-surplus);"
-				></span>
-				прибавочное время <code class="font-semibold text-surplus">H − n</code>
-				(<code class="text-surplus">m</code> = {formatNumber(result.m)} ₽)
-			</span>
-		</div>
+		<Legend
+			items={[
+				{ key: 'n', color: 'var(--color-var)', code: 'n', label: 'необходимое время' },
+				{ key: 'surplus', color: 'var(--color-surplus)', code: 'H − n', label: 'прибавочное время' }
+			]}
+		/>
 	</div>
 
 	<!-- Слайдеры -->
