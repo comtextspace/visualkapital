@@ -10,9 +10,7 @@
 <div class="flex min-h-screen flex-col bg-paper text-ink">
 	<header class="border-b border-ink/15 bg-paper-dark/60">
 		<div class="mx-auto flex max-w-4xl items-baseline justify-between px-4 py-3 sm:px-6">
-			<a href="/" class="font-serif text-lg tracking-tight hover:underline"
-				>Схемы в «Капитале» К. Маркса</a
-			>
+			<a href="/" class="font-serif text-lg tracking-tight hover:underline">Капитал в формулах</a>
 			<a
 				href="https://defcon.social/@pensadoj"
 				target="_blank"

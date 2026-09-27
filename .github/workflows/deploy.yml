@@ -23,6 +23,20 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Playwright browsers
+        # e2e-тесты (npm run test:e2e) запускают Chromium — на чистом раннере
+        # его нет, --with-deps ставит и системные библиотеки для headless-запуска.
+        # Сами браузеры кэшируются по хешу package-lock.json (там же версия
+        # @playwright/test), системные либы — тоже, но легковесны.
+        run: npx playwright install --with-deps chromium
+
       - name: Check
         run: npm run check
 
