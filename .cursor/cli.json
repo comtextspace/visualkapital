@@ -1,0 +1,22 @@
+{
+	"permissions": {
+		"allow": [
+			"Shell(cd)",
+			"Shell(npm)",
+			"Shell(npx)",
+			"Shell(node)",
+			"Shell(echo)",
+			"Shell(git)",
+			"Shell(ls)",
+			"Shell(cat)",
+			"Shell(ps)",
+			"Shell(curl)",
+			"Shell(kill)",
+			"Shell(lsof)",
+			"Shell(grep)",
+			"Shell(find)",
+			"Shell(mkdir)",
+			"Shell(pwd)"
+		]
+	}
+}
