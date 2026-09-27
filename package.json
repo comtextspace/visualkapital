@@ -13,10 +13,12 @@
 		"lint": "prettier --check .",
 		"format": "prettier --write .",
 		"test:unit": "vitest",
-		"test:pages": "npm run build",
-		"test": "npm run test:unit -- --run && npm run test:pages"
+		"test:pages": "npm run build && node scripts/verify-pages.mjs",
+		"test:e2e": "playwright test",
+		"test": "npm run test:unit -- --run && npm run test:pages && npm run test:e2e"
 	},
 	"devDependencies": {
+		"@playwright/test": "^1.63.0",
 		"@sveltejs/adapter-static": "^3.0.10",
 		"@sveltejs/kit": "^2.63.0",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",

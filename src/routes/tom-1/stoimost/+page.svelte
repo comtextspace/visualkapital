@@ -205,7 +205,12 @@
 					<td class="py-2 pr-3">
 						<code class="font-semibold"
 							><span class="text-const">c</span> ⁄ <span class="text-var">v</span></code
-						> — органическое строение
+						>
+						— строение капитала по стоимости
+						<div class="font-mono text-xs text-ink-soft">
+							строго «органическим» Маркс называет это отношение только тогда, когда оно отражает
+							техническое строение — соотношение массы средств производства и живого труда
+						</div>
 					</td>
 					<td class="py-2 pr-3 font-mono">{formatNumber(result.organicComposition, 2)}</td>
 				</tr>

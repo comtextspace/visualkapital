@@ -216,8 +216,7 @@
 				</tr>
 				<tr class="border-b border-ink/10">
 					<td class="py-2 pr-3">
-						<code class="font-semibold" style="color: var(--color-labour);">(v + m) ⁄ N</code> —
-						новая стоимость на штуку
+						<code class="font-semibold text-labour">(v + m) ⁄ N</code> — новая стоимость на штуку
 						<div class="font-mono text-xs text-ink-soft">
 							= {formatNumber(DAILY_LIVING_LABOUR_VALUE)} ⁄ N
 						</div>
@@ -238,8 +237,7 @@
 				</tr>
 				<tr class="border-b border-ink/10">
 					<td class="py-2 pr-3">
-						<code class="font-semibold" style="color: var(--color-labour);">v + m</code> — новая стоимость
-						за весь день
+						<code class="font-semibold text-labour">v + m</code> — новая стоимость за весь день
 					</td>
 					<td class="py-2 pr-3 font-mono">{formatNumber(result.totalLabourValue)}</td>
 				</tr>

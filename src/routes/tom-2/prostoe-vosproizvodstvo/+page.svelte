@@ -73,17 +73,17 @@
 			{
 				balanced: {
 					label: 'Обмен между отделами сбалансирован',
-					color: 'var(--color-var)',
+					colorClass: 'text-var',
 					hint: 'v₁ + m₁ = c₂ — условие простого воспроизводства выполнено: весь общественный продукт находит покупателя, и производство может повториться в прежнем масштабе.'
 				},
 				surplus: {
 					label: 'Отдел I производит больше, чем нужно отделу II',
-					color: 'var(--color-released)',
+					colorClass: 'text-released',
 					hint: 'v₁ + m₁ больше c₂: отдел I предлагает для обмена больше средств производства, чем отдел II готов купить для возобновления своего постоянного капитала. Излишек не найдёт сбыта, если отдел II не станет расширять производство.'
 				},
 				deficit: {
 					label: 'Отдел I производит меньше, чем нужно отделу II',
-					color: 'var(--color-surplus)',
+					colorClass: 'text-surplus',
 					hint: 'v₁ + m₁ меньше c₂: отделу II не хватает средств производства, чтобы полностью возобновить постоянный капитал. Часть его производства не сможет продолжиться в прежнем масштабе.'
 				}
 			} as const
@@ -216,7 +216,7 @@
 	<!-- Баланс обмена -->
 	<div class="mt-10">
 		<div class="rounded-lg border border-ink/15 bg-paper px-4 py-4 sm:px-5">
-			<div class="font-serif text-lg leading-snug" style={`color: ${caseInfo.color};`}>
+			<div class={`font-serif text-lg leading-snug ${caseInfo.colorClass}`}>
 				{caseInfo.label}
 			</div>
 			<p class="mt-1 max-w-prose text-sm text-ink-soft">{caseInfo.hint}</p>
@@ -236,7 +236,7 @@
 				</div>
 				<div>
 					<div class="text-xs tracking-wide text-ink-soft uppercase">баланс</div>
-					<div class="font-mono text-2xl tabular-nums" style={`color: ${caseInfo.color};`}>
+					<div class={`font-mono text-2xl tabular-nums ${caseInfo.colorClass}`}>
 						{result.balance > 0 ? '+' : ''}{formatNumber(result.balance)} ₽
 					</div>
 				</div>
@@ -401,11 +401,11 @@
 					<td class="py-2 pr-3 font-mono">{formatNumber(result.dept2Demand)} ₽</td>
 				</tr>
 				<tr>
-					<td class="py-2 pr-3" style={`color: ${caseInfo.color};`}>
+					<td class={`py-2 pr-3 ${caseInfo.colorClass}`}>
 						баланс обмена
 						<div class="font-mono text-xs text-ink-soft">(v₁ + m₁) − c₂</div>
 					</td>
-					<td class="py-2 pr-3 font-mono" style={`color: ${caseInfo.color};`}>
+					<td class={`py-2 pr-3 font-mono ${caseInfo.colorClass}`}>
 						{result.isBalanced
 							? '0 ₽ (простое воспроизводство сходится)'
 							: `${result.balance > 0 ? '+' : ''}${formatNumber(result.balance)} ₽`}

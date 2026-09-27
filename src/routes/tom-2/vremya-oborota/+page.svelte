@@ -57,9 +57,9 @@
 		Пока товар производится и продаётся, вложенные в него деньги «в пути»: капиталист получит их
 		назад только после продажи. Время от вложения денег до их возврата — это
 		<strong>время оборота</strong>. Оно складывается из
-		<strong style="color: var(--color-labour);">рабочего периода w</strong>
+		<strong class="text-labour">рабочего периода w</strong>
 		— срока, за который производится партия товара, — и
-		<strong style="color: var(--color-circulation);">периода обращения z</strong>
+		<strong class="text-circulation">периода обращения z</strong>
 		— срока, за который готовый товар доходит до покупателя, а деньги за него возвращаются обратно.
 	</p>
 	<p class="mt-3 max-w-prose text-ink-soft">
@@ -131,9 +131,7 @@
 
 		<div>
 			<label for="slider-w" class="flex justify-between font-mono text-sm">
-				<span
-					><code class="font-semibold" style="color: var(--color-labour);">w</code> — рабочий период</span
-				>
+				<span><code class="font-semibold text-labour">w</code> — рабочий период</span>
 				<span>{formatNumber(workingPeriodDays)} дн.</span>
 			</label>
 			<input
@@ -150,9 +148,7 @@
 
 		<div>
 			<label for="slider-z" class="flex justify-between font-mono text-sm">
-				<span
-					><code class="font-semibold" style="color: var(--color-circulation);">z</code> — период обращения</span
-				>
+				<span><code class="font-semibold text-circulation">z</code> — период обращения</span>
 				<span>{formatNumber(circulationPeriodDays)} дн.</span>
 			</label>
 			<input
@@ -197,13 +193,13 @@
 				</tr>
 				<tr class="border-b border-ink/10">
 					<td class="py-2 pr-3">
-						<code class="font-semibold" style="color: var(--color-labour);">w</code> — рабочий период
+						<code class="font-semibold text-labour">w</code> — рабочий период
 					</td>
 					<td class="py-2 pr-3 font-mono">{formatNumber(result.workingPeriodDays)} дн.</td>
 				</tr>
 				<tr class="border-b border-ink/10">
 					<td class="py-2 pr-3">
-						<code class="font-semibold" style="color: var(--color-circulation);">z</code> — период обращения
+						<code class="font-semibold text-circulation">z</code> — период обращения
 					</td>
 					<td class="py-2 pr-3 font-mono">{formatNumber(result.circulationPeriodDays)} дн.</td>
 				</tr>

@@ -70,6 +70,14 @@
 </svelte:head>
 
 <section class="mb-10">
+	<div
+		class="mb-6 max-w-prose rounded-lg border border-surplus/40 bg-surplus/5 px-4 py-3 text-sm text-ink-soft"
+		role="note"
+	>
+		<strong class="text-surplus">Внимание:</strong> схемы, формулы и пояснения на этом сайте сгенерированы
+		нейросетью. Это учебный эксперимент, а не выверенный академический материал — относитесь к содержанию
+		критически и по возможности проверяйте по первоисточнику.
+	</div>
 	<h1 class="font-serif text-3xl">Схемы «Капитала»</h1>
 	<p class="mt-3 max-w-prose text-ink-soft">
 		Живые схемы к экономическим построениям Маркса. Подвигайте слайдер у одной величины — остальные

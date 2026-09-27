@@ -120,9 +120,9 @@
 	<h1 class="font-serif text-3xl">Высвобождение оборотного капитала</h1>
 	<p class="mt-3 max-w-prose text-ink-soft">
 		Капитал возвращается деньгами не сразу, а партиями: товар, произведённый за
-		<strong style="color: var(--color-labour);">рабочий период w</strong>, продаётся и приносит
-		деньги обратно только через
-		<strong style="color: var(--color-circulation);">период обращения z</strong>
+		<strong class="text-labour">рабочий период w</strong>, продаётся и приносит деньги обратно
+		только через
+		<strong class="text-circulation">период обращения z</strong>
 		после того, как он готов. Чтобы дело не прерывалось, капиталист каждую неделю тратит на рабочую силу
 		и материалы <code>k</code> ₽ — и должен держать эти деньги наготове весь срок оборота
 		<code>U = w + z</code>. Отсюда <strong>авансированный капитал</strong>
@@ -152,9 +152,9 @@
 			<div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 font-serif text-lg leading-snug">
 				<span>{caseInfo.label}:</span>
 				<span>
-					<code class="font-semibold" style="color: var(--color-labour);">w</code>
+					<code class="font-semibold text-labour">w</code>
 					<span class="mx-1 text-ink-soft">{caseLabels[result.caseType]}</span>
-					<code class="font-semibold" style="color: var(--color-circulation);">z</code>
+					<code class="font-semibold text-circulation">z</code>
 				</span>
 			</div>
 			<p class="mt-1 max-w-prose text-sm text-ink-soft">{caseInfo.hint}</p>
@@ -164,7 +164,7 @@
 					Пик высвобождающегося капитала
 				</div>
 				{#if result.hasRelease}
-					<p class="mt-1 font-mono text-3xl tabular-nums" style="color: var(--color-released);">
+					<p class="mt-1 font-mono text-3xl text-released tabular-nums">
 						{formatNumber(result.maxReleased)} ₽
 					</p>
 				{:else}
@@ -183,17 +183,17 @@
 					<div class="mb-2">
 						<div class="mb-1 font-semibold text-ink-soft">Текущее состояние</div>
 						<ul class="space-y-0.5 font-mono">
-							<li style="color: var(--color-labour);">
+							<li class="text-labour">
 								в производстве — {formatNumber(selectedSnapshot.production)} ₽
 							</li>
-							<li style="color: var(--color-circulation);">
+							<li class="text-circulation">
 								в обращении — {formatNumber(selectedSnapshot.circulation)} ₽
 							</li>
 							<li style="color: var(--color-const);">
 								осталось авансировать на текущий рабочий период —
 								{formatNumber(selectedSnapshot.remainingAdvanced)} ₽
 							</li>
-							<li style="color: var(--color-released);">
+							<li class="text-released">
 								ещё не авансирован (высвободился) — {formatNumber(selectedSnapshot.released)} ₽
 							</li>
 						</ul>
@@ -344,10 +344,7 @@
 
 		<div>
 			<label for="slider-w" class="flex justify-between font-mono text-sm">
-				<span
-					><code class="font-semibold" style="color: var(--color-labour);">w</code> — рабочий период,
-					недель</span
-				>
+				<span><code class="font-semibold text-labour">w</code> — рабочий период, недель</span>
 				<span>{formatNumber(workingPeriodWeeks)}</span>
 			</label>
 			<input
@@ -364,9 +361,7 @@
 
 		<div>
 			<label for="slider-z" class="flex justify-between font-mono text-sm">
-				<span
-					><code class="font-semibold" style="color: var(--color-circulation);">z</code> — период обращения,
-					недель</span
+				<span><code class="font-semibold text-circulation">z</code> — период обращения, недель</span
 				>
 				<span>{formatNumber(circulationPeriodWeeks)}</span>
 			</label>
@@ -406,13 +401,13 @@
 				</tr>
 				<tr class="border-b border-ink/10">
 					<td class="py-2 pr-3">
-						<code class="font-semibold" style="color: var(--color-labour);">w</code> — рабочий период
+						<code class="font-semibold text-labour">w</code> — рабочий период
 					</td>
 					<td class="py-2 pr-3 font-mono">{formatNumber(result.workingPeriodWeeks)} нед.</td>
 				</tr>
 				<tr class="border-b border-ink/10">
 					<td class="py-2 pr-3">
-						<code class="font-semibold" style="color: var(--color-circulation);">z</code> — период обращения
+						<code class="font-semibold text-circulation">z</code> — период обращения
 					</td>
 					<td class="py-2 pr-3 font-mono">{formatNumber(result.circulationPeriodWeeks)} нед.</td>
 				</tr>
@@ -428,10 +423,8 @@
 					<td class="py-2 pr-3 font-mono">{formatNumber(result.releaseCapacity)} ₽</td>
 				</tr>
 				<tr>
-					<td class="py-2 pr-3" style="color: var(--color-released);">
-						пик высвобождающегося капитала
-					</td>
-					<td class="py-2 pr-3 font-mono" style="color: var(--color-released);">
+					<td class="py-2 pr-3 text-released"> пик высвобождающегося капитала </td>
+					<td class="py-2 pr-3 font-mono text-released">
 						{result.hasRelease
 							? `${formatNumber(result.maxReleased)} ₽`
 							: '0 ₽ (не высвобождается)'}
