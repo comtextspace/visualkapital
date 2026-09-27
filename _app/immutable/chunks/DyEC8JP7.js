@@ -1,0 +1,1 @@
+var e=1200,t=2e3;function n(e){return{c:Math.min(Math.max(0,e.c),t),v:Math.min(Math.max(1,e.v),1199)}}function r(t){let{c:r,v:i}=n(t),a=e-i;return{c:r,v:i,m:a,w:r+i+a,mRate:a/i*100,organicComposition:r/i}}export{t as n,r,e as t};
